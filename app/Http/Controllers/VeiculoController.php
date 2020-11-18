@@ -24,7 +24,7 @@ class VeiculoController extends Controller
      */
     public function create()
     {
-        $proprietarios = User::where('role',1);
+        $proprietarios = User::where('role',1)->get();
     
         return view('admin.veiculos.edit',[
             'veiculo' => $this->model(),
@@ -94,15 +94,15 @@ class VeiculoController extends Controller
         return new Veiculo($data);
     }
 
-    // private function validator(array $data)
-    // {
-    //     return Validator::make($data, [
-    //         'state_id' => 'required|exists:states,id',
-    //         'city' => 'required|string|max:255',
-    //         'name' => 'required|string|max:255',
-    //     ], [], [
-    //         'state_id' => 'estado',
-    //     ]);
-    // }
+    private function validator(array $data)
+    {
+        return Validator::make($data, [
+            'state_id' => 'required|exists:states,id',
+            'placa' => 'required|string|max:7',
+            'name' => 'required|string|max:255',
+        ], [], [
+            'state_id' => 'estado',
+        ]);
+    }
 
 }

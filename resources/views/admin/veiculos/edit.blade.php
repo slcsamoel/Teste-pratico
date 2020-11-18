@@ -127,6 +127,7 @@
                         </div>
                         <div class="col-md-10">
                             <select name="user_id" class="form-control ">
+                                <option value=" ">Informe o Proprietario do Veiculo</option>
                                 @foreach ($proprietarios as $proprietario)
                                     <option {{ $veiculo->user_id == $proprietario->id ? 'selected' : '' }} value="{{ $proprietario->id }}">
                                         {{ $proprietario->name }} </option>

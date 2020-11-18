@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Veiculo;
 use App\Notifications\MyResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -38,4 +39,12 @@ class User extends Authenticatable
     {
         $this->notify(new MyResetPasswordNotification($token));
     }
+
+
+
+    public function veiculos()
+    {
+        return $this->hasMany(Veiculo::class);
+    }
+
 }

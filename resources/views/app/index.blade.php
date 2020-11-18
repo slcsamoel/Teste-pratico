@@ -1,15 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
 
 <div class="container">
-    <div class="row pb-3">
-        <div class="col">
-            <a href="{{ route('admin.veiculo.create') }}" class="btn btn-success new-galleries">
-                <i class="fas fa-plus"></i> Registrar Novo Veiculo
-            </a>
-        </div>
-    </div>
     <div class="row ">
         <div class="col-md-12">
             <div class="row">
@@ -58,12 +51,9 @@
     </div>
 </div>
 
-
 @endsection
 @push('scripts')
  <script type="text/javascript">
-
-
 
  </script>
 @endpush

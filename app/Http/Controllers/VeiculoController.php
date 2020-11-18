@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\User ;
+use App\user;
 use App\Veiculo;
+use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class VeiculoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,18 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        if(\Auth::user()->role == User::ROLE_ADMIN){
-
-            return view('admin.index');
-         }
-         else{
-            
-             return view('app.index');
-         }
-        
-         
-
+        //
     }
 
     /**
@@ -36,7 +24,13 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        $proprietarios = User::where('role',1);
+    
+        return view('admin.veiculos.edit',[
+            'veiculo' => $this->model(),
+            'proprietarios' => $proprietarios
+        ]);
+
     }
 
     /**
@@ -94,4 +88,21 @@ class HomeController extends Controller
     {
         //
     }
+
+    private function model(array $data = [])
+    {
+        return new Veiculo($data);
+    }
+
+    // private function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'state_id' => 'required|exists:states,id',
+    //         'city' => 'required|string|max:255',
+    //         'name' => 'required|string|max:255',
+    //     ], [], [
+    //         'state_id' => 'estado',
+    //     ]);
+    // }
+
 }

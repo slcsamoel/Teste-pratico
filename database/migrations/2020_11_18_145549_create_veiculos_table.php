@@ -15,28 +15,19 @@ class CreateVeiculosTable extends Migration
     {
         Schema::create('veiculos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('user_id');
             $table->string('placa');
             $table->string('renavam');
             $table->string('modelo');
             $table->string('marca');
             $table->string('ano');    
+            $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('user_id')
-            ->references('id')
-            ->on('users');
         });
     }
 
     /**
      * Reverse the migrations.
-     * Placa
-Renavam
-Modelo
-Marca
-Ano
-Proprietário
      * 
      * 
      *

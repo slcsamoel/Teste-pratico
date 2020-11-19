@@ -3,6 +3,11 @@
 @section('content')
 
 <div class="container">
+    <div class="row pb-3">
+        <div class="col">
+            <h3>Meus Veiculos</h3>
+        </div>
+    </div>
     <div class="row ">
         <div class="col-md-12">
             <div class="row">
@@ -11,39 +16,43 @@
                     <thead>
                         <tr>
                             <th scope="col" class="d-print-none" style="width:50px;">ID</th>
-                            <th scope="col">Título</th>
-                            <th scope="col">Ano</th>
-                            <th scope="col" class="d-print-none" style="width:150px;">Ação</th>
+                            <th scope="col" style="width:100px;">Modelo</th>
+                            <th scope="col" style="width:100px;">placa</th>
+                            <th scope="col" style="width:100px;">Marca</th>
+                            <th scope="col" style="width:100px;">Ano</th>
+                            <th scope="col">Renavam</th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        @foreach($whoWeAre->galleryStories as $gallery)
+                    <tbody>
+                        
+                        @foreach($veiculos as $veiculo)
                             <tr>
-                                <td>{{ $gallery->id }}</td>
+                                <td>{{ $veiculo->id }}</td>
                                 <td>
-                                    <a href="{{ route('panel.cms.who-we-are.galleryEdit', ['whoWeAre' => $whoWeAre->id, 'gallery' => $gallery->id]) }}">
-                                        {{ $gallery->title }}
-                                    </a>
+                                    
+                                        {{ $veiculo->modelo }}
+                                    
                                 </td>
                                 <td>
-                                    <a href="{{ route('panel.cms.who-we-are.galleryEdit', ['whoWeAre' => $whoWeAre->id, 'gallery' => $gallery->id]) }}">
-                                        {{ $gallery->year}}
-                                    </a>
+                                    {{ $veiculo->placa}}
+                                    
                                 </td>
                                 <td>
-                                    @can('update')
-                                        <a href="{{ route('panel.cms.who-we-are.galleryEdit', ['whoWeAre' => $whoWeAre->id, 'gallery' => $gallery->id]) }}" class="btn btn-sm btn-info mx-1">
-                                            <i class="fas fa-fw fa-edit"></i>
-                                        </a>
-
-                                        <button class="btn btn-sm btn-danger delete-registry mx-1" data-ref="galleries-delete" data-href="{{ route('panel.cms.who-we-are.galleryDestroy', ['product' => $whoWeAre->id, 'gallery' => $gallery->id]) }}">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    @endcan
+                                    
+                                    {{ $veiculo->marca}}
+                                
+                                 </td>
+                                 <td>
+                                    
+                                    {{ $veiculo->ano}}
+                                
+                                 </td>
+                                 <td>
+                                  {{ $veiculo->renavam}}                     
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody> --}}
+                    </tbody>
                 </table>
             </div>
             </div>

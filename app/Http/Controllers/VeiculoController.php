@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\user;
 use App\Veiculo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class VeiculoController extends Controller
 {
@@ -41,7 +42,16 @@ class VeiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+           $this->validator($request->all())->validate();
+           
+           $veiculo = $this->model($request->all());
+
+           $veiculo->save();
+
+           return redirect()->route('admin.veiculo.edit', [
+            'veiculo' => $veiculo->id,
+            ])->with('success', 'registrado com sucesso!');  
+
     }
 
     /**
@@ -61,9 +71,14 @@ class VeiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Veiculo $veiculo)
     {
-        //
+        $proprietarios = User::where('role',1)->get();
+        return view('admin.veiculos.edit',[
+            'veiculo' => $veiculo,
+            'proprietarios' => $proprietarios
+        ]); 
+
     }
 
     /**
@@ -75,7 +90,17 @@ class VeiculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $veiculo = Veiculo::find($id);
+        $this->validator($request->all())->validate();
+
+        $veiculo->fill($request->all());
+
+        $veiculo->save();
+        
+        return redirect()->route('admin.veiculo.edit', [
+            'veiculo' => $veiculo->id,
+            ])->with('success', 'Atualizada com sucesso!'); 
+
     }
 
     /**
@@ -85,8 +110,13 @@ class VeiculoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {    
+        $veiculo = Veiculo::find($id);
+        if($veiculo->delete()){
+           return redirect()->back()->with('success', 'Deletado com sucesso');
+        }else{
+            return redirect()->back()->with('success', 'Erro ao Deletar Registro');
+        }
     }
 
     private function model(array $data = [])
@@ -97,11 +127,11 @@ class VeiculoController extends Controller
     private function validator(array $data)
     {
         return Validator::make($data, [
-            'state_id' => 'required|exists:states,id',
             'placa' => 'required|string|max:7',
-            'name' => 'required|string|max:255',
+            'modelo' => 'required|string|max:255',
+            'marca' => 'required|string|max:255',
+            'ano' => 'required|string|max:4',
         ], [], [
-            'state_id' => 'estado',
         ]);
     }
 

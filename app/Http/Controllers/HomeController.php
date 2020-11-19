@@ -18,11 +18,21 @@ class HomeController extends Controller
         
         if(\Auth::user()->role == User::ROLE_ADMIN){
 
-            return view('admin.index');
+            $veiculos = Veiculo::get();    
+
+            return view('admin.index',[
+                'veiculos' => $veiculos 
+            ]);
          }
          else{
             
-             return view('app.index');
+            $user_id = \Auth::user()->id;
+
+            $veiculos= Veiculo::where('user_id',$user_id)->get();
+
+             return view('app.index',[
+                 'veiculos'=> $veiculos
+             ]);
          }
         
          

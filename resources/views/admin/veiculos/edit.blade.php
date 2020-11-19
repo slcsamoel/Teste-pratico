@@ -21,7 +21,7 @@
         @endif
 
         @if($veiculo->id)
-            <form action="{{ route('admin.veiculo.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.veiculo.update',['veiculo'=>$veiculo->id]) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
         @else
             <form action="{{ route('admin.veiculo.store') }}" method="POST" enctype="multipart/form-data">
@@ -42,11 +42,11 @@
                         <div class="col-md-10">
                             <input type="text" name="placa" id="placa" class="form-control @error('placa') is-invalid @enderror" value="{{ old('placa') ?: $veiculo->placa }}" />
 
-                            @error('placa')
+                            {{--  @error('placa')
                                 <span class="invalid-feedback" role="alert">
                                     <strong></strong>
                                 </span>
-                            @enderror
+                            @enderror  --}}
                         </div>
                     </div>
 
@@ -59,11 +59,11 @@
                         <div class="col-md-10">
                             <input type="text" name="modelo" id="modelo" class="form-control @error('modelo') is-invalid @enderror" value="{{ old('modelo') ?: $veiculo->modelo }}" />
 
-                            @error('modelo')
+                            {{--  @error('modelo')
                                 <span class="invalid-feedback" role="alert">
                                     <strong></strong>
                                 </span>
-                            @enderror
+                            @enderror  --}}
                         </div>
                     </div>
 
@@ -76,11 +76,11 @@
                         <div class="col-md-10">
                             <input type="text" name="marca" id="marca" class="form-control @error('marca') is-invalid @enderror" value="{{ old('marca') ?: $veiculo->marca }}" />
 
-                            @error('marca')
+                            {{--  @error('marca')
                                 <span class="invalid-feedback" role="alert">
                                     <strong></strong>
                                 </span>
-                            @enderror
+                            @enderror  --}}
                         </div>
                     </div>
 
@@ -93,11 +93,11 @@
                         <div class="col-md-10">
                             <input type="text" name="renavam" id="renavam" class="form-control @error('renavam') is-invalid @enderror" value="{{ old('renavam') ?: $veiculo->renavam }}" />
 
-                            @error('renavam')
+                            {{--  @error('renavam')
                                 <span class="invalid-feedback" role="alert">
                                     <strong></strong>
                                 </span>
-                            @enderror
+                            @enderror  --}}
                         </div>
                     </div>
 
@@ -111,11 +111,11 @@
                         <div class="col-md-10">
                             <input type="text" name="ano" id="ano" class="form-control @error('ano') is-invalid @enderror" value="{{ old('ano') ?: $veiculo->ano }}" />
 
-                            @error('ano')
+                            {{--  @error('ano')
                                 <span class="invalid-feedback" role="alert">
                                     <strong></strong>
                                 </span>
-                            @enderror
+                            @enderror  --}}
                         </div>
                     </div>
 
@@ -126,7 +126,7 @@
                             </label>
                         </div>
                         <div class="col-md-10">
-                            <select name="user_id" class="form-control ">
+                            <select name="user_id" class="form-control" required>
                                 <option value=" ">Informe o Proprietario do Veiculo</option>
                                 @foreach ($proprietarios as $proprietario)
                                     <option {{ $veiculo->user_id == $proprietario->id ? 'selected' : '' }} value="{{ $proprietario->id }}">
@@ -161,8 +161,6 @@
 @endsection
 @push('scripts')
  <script type="text/javascript">
-
-
 
  </script>
 @endpush

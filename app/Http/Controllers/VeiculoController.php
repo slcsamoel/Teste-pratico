@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\user;
 use App\Veiculo;
+use App\Notifications\CustomerNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -47,6 +48,13 @@ class VeiculoController extends Controller
            $veiculo = $this->model($request->all());
 
            $veiculo->save();
+
+           $proprietario = $veiculo->user;
+
+           $subject = 'Adicionado Veiculo';
+           $message = "O Veiculo $veiculo->modelo Foi Adicionado ";
+   
+           $proprietario->notify(new CustomerNotification($proprietario->name , $proprietario->email,$subject,$message));
 
            return redirect()->route('admin.veiculo.edit', [
             'veiculo' => $veiculo->id,
@@ -96,6 +104,12 @@ class VeiculoController extends Controller
         $veiculo->fill($request->all());
 
         $veiculo->save();
+        $proprietario = $veiculo->user;
+
+        $subject = 'Alteração no Seu Veviculo';
+        $message = "O Veiculo $veiculo->modelo Foi Alterado ";
+
+        $proprietario->notify(new CustomerNotification($proprietario->name , $proprietario->email,$subject,$message));
         
         return redirect()->route('admin.veiculo.edit', [
             'veiculo' => $veiculo->id,
@@ -112,6 +126,14 @@ class VeiculoController extends Controller
     public function destroy($id)
     {    
         $veiculo = Veiculo::find($id);
+
+        $proprietario = $veiculo->user;
+
+        $subject = 'Removido o Veiculo';
+        $message = "O Veiculo $veiculo->modelo Foi Removido ";
+
+        $proprietario->notify(new CustomerNotification($proprietario->name , $proprietario->email,$subject,$message));
+
         if($veiculo->delete()){
            return redirect()->back()->with('success', 'Deletado com sucesso');
         }else{

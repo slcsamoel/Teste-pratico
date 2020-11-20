@@ -7,9 +7,10 @@
 * Execute php artisan key:generate
 * Execute php artisan migrate
 * Execute php artisan db:seed
+* Execute php artisan config:cache
 ### Usuários
 Existem dois tipos diferentes de usuários na aplicação:
-- Administrador(login nas)
+- Administrador(login)
 - Usuário
 - A senha dos usuários é 'secret'.
 

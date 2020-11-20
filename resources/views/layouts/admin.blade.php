@@ -60,6 +60,9 @@
                             </form>
                         </div>
                     </li>
+                    <li>
+                        <a class="nav-link"  href="{{ route('register') }}">Registra usuario</a>
+                    </li>
                     @endguest
                 </ul>
             </div>

@@ -123,7 +123,7 @@ class VeiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {    
         $veiculo = Veiculo::find($id);
 
@@ -149,7 +149,7 @@ class VeiculoController extends Controller
     private function validator(array $data)
     {
         return Validator::make($data, [
-            'placa' => 'required|string|max:7',
+            'placa' => 'required|string|max:9',
             'modelo' => 'required|string|max:255',
             'marca' => 'required|string|max:255',
             'ano' => 'required|string|max:4',

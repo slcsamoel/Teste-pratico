@@ -14,6 +14,7 @@ let mix = require('laravel-mix');
 mix
     .copy('node_modules/notyf/notyf.min.js', 'public/vendor')
     .copy('node_modules/notyf/notyf.min.css', 'public/vendor')
+    .copy('node_modules/jquery/dist/jquery.min.js', 'public/vendor')
     .copy('node_modules/mustache/mustache.min.js', 'public/vendor')
     .copy('node_modules/jquery-mask-plugin/dist/jquery.mask.min.js', 'public/vendor')
     .copy('node_modules/jquery-validation/dist/jquery.validate.min.js', 'public/vendor')

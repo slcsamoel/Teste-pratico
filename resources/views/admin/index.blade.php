@@ -57,7 +57,7 @@
                                             <i class="fas fa-fw fa-edit"></i>
                                         </a>
 
-                                        <a href="{{ route('admin.veiculo.destroy',['veiculo'=>$veiculo->id]) }}" class="btn btn-sm btn-danger delete-registry mx-1" placeholder="Excluir">
+                                        <a href="{{ route('admin.veiculo.delete',['veiculo'=>$veiculo->id]) }}" class="btn btn-sm btn-danger delete-registry mx-1" placeholder="Excluir">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
 
@@ -76,8 +76,6 @@
 @endsection
 @push('scripts')
  <script type="text/javascript">
-
-
 
  </script>
 @endpush

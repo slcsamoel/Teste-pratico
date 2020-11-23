@@ -33,6 +33,8 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::resource('veiculo', 'VeiculoController');
+    Route::get('veiculo/{veiculo}', 'VeiculoController@delete')->name('veiculo.delete');
+
 
 });
 
